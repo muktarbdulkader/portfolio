@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muktar Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header class="header">
+   
+    <div class="logo">
+      <img src="images/oigs.jpg" alt="Logo letter M" width="32" height="32" />
+      <span>Muktar</span>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#home" class="active" aria-current="page">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contacts">Contact</a>
+    </nav>
+   <button class="color-toggle" id="colorToggle" aria-label="Toggle dark mode">
+     <i class="fas fa-moon"></i><i class="fas fa-sun"></i><span class="fallback">🌙</span>
+   </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars"></i><span class="fallback">☰</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="section">
+      <div class="hero-content">
+       <div class="typing">
+        
+        <span></span></div>
+        <p class="subtitle">A <span class="highlight">Web Designer</span> & <span class="highlight">Front-End Developer</span></p>
+        <p class="description">I craft stunning, responsive websites with creativity and code.</p>
+        <button id="contact-me-btn">Contact Me <span class="arrow">→</span></button>
+      </div>
+      <div class="hero-image">
+        <img src="images/muktar.png" alt="Person in hoodie" width="320" height="320" />
+        <div class="image-glow"></div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <!-- Project Cards -->
+        <article class="project-card">
+          <img src="images/image.png" alt="ThecnGear project preview" width="280" height="140" loading="lazy" />
+          <div class="project-tags">Pug • Stylus • Node.js</div>
+          <h3>ThecnGear</h3>
+          <p>ThecnGear Information.</p>
+          <div class="project-buttons">
+            <button>Figma</button>
+            <button>Netlify</button>
+            <button>Github</button>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="images/grup.png" alt="Group Information preview" width="280" height="140" loading="lazy" />
+          <div class="project-tags">Preact • CSS • Flask • Typescript</div>
+          <h3>Group Information</h3>
+          <p>Group Information collaboration.</p>
+          <div class="project-buttons">
+            <button>Netlify</button>
+            <button>Github</button>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="images/remu.png" alt="Feedrun project preview" width="280" height="140" loading="lazy" />
+          <div class="project-tags">Node.js • Next • React</div>
+          <h3>Coffee Shop</h3>
+          <p>Coffee Shop Information.</p>
+          <div class="project-buttons">
+            <button>Github</button>
+            <button>Netlify</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills-content">
+        <div class="skills-grid">
+          <div class="skill-card"><h4>Languages</h4><p>Javascript, Typescript, Python</p></div>
+          <div class="skill-card"><h4>Database</h4><p>SQLite, PostgreSQL</p></div>
+          <div class="skill-card"><h4>Other</h4><p>HTML, CSS, SASS, SCSS, Less, Stylus, EJS, Jinja2, Pug</p></div>
+          <div class="skill-card"><h4>Frameworks</h4><p>React, Next, Gulp, Express, Flask, Quart</p></div>
+        </div>
+        <img src="https://storage.googleapis.com/a1aa/image/6971d41b-346c-4327-69a8-03e4975cbf85.jpg" alt="Illustration of coding tools and technologies" class="skills-image" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>I'm Muktar Abdulkader, a Software Engineering student at Haramaya University, passionate about building responsive and functional web and mobile applications.</p>
+      <p>I focus on front-end development, animations, and user experience, constantly improving my skills through real-world projects and learning modern tools.</p>
+      <button>Learn More <span class="arrow">→</span></button>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <h2>Testimonials</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"Muktar is a talented developer with a keen eye for design. His work on our project was exceptional!"</p>
+          <p>- Client A</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"Working with Muktar was a pleasure. He delivered high-quality work on time and exceeded our expectations."</p>
+          <p>- Client B</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacts" class="section">
+      <h2>Contact</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <p>I’m open to freelance opportunities and love collaborating on exciting projects. Drop me a message!</p>
+          <p><span>✉️</span> muktarabdulkader957@gmail.com</p>
+          <p><span>🐙</span> <a href="https://github.com/muktarbdukader" rel="noopener noreferrer">github.com/muktarbdukader</a></p>
+        </div>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit">Send Message <span>📬</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/oigs.jpg" alt="Logo" width="32" height="32" loading="lazy" />
+        <span>Muktar</span>
+      </div>
+      <p>muktarabdulkader957@gmail.com</p>
+      <p>Web designer & front-end developer based in Warsaw, Poland</p>
+      <div class="social-links">
+        <a href="#" rel="noopener noreferrer">FB</a>
+        <a href="#" rel="noopener noreferrer">PIN</a>
+        <a href="https://github.com/muktarbdukader" rel="noopener noreferrer">GH</a>
+      </div>
+    </div>
+    <p class="copyright">© <span id="year"></span> Made with ❤️ by Muktar Abdulkader</p>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
