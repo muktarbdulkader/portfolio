@@ -221,6 +221,7 @@ h2 {
   #home {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -239,24 +240,32 @@ h2 {
   margin-bottom: 1rem;
 }
 
+@media (max-width: 767px) {
+  .typing {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    font-size: 1.5rem;
+   font-weight: 600;
+    animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    animation-delay: 1s;
+  }
+  .typing span{
+    font-size: 1rem
+    
+    
+
+
+  }
+
+}
+
 @keyframes blink {
   50% {
     border-color: transparent;
   }
 }
-
-/* Responsive for mobile */
-@media (max-width: 768px) {
-  .typing {
-    font-size: 2rem;
-   animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
-   animation-delay: 2s;
-  }
-
-}
-
-
-
 .subtitle {
   font-size: 1.5rem;
   color: #7aa2f7;
@@ -323,6 +332,33 @@ h2 {
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
+
+/* Responsive for mobile */
+@media (max-width: 767px) {
+  #home {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero-image {
+    margin-top: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
 
 /* Projects section */
 .project-grid {
