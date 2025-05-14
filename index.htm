@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muktar Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -58,8 +63,8 @@
           <p>ThecnGear Information.</p>
           <div class="project-buttons">
             <button>Figma</button>
-            <button>Netlify</button>
-            <button>Github</button>
+            <a href="https://technogearinfodesignmuktarabdulkader.netlify.app/" target="_blank" rel="noopener noreferrer"><button>Netlify</button></a>
+            <a href="https://github.com/muktarbdulkader"  target="_blank" rel="noopener noreferrer"><button>Github</button></a>
           </div>
         </article>
 
@@ -69,8 +74,8 @@
           <h3>Group Information</h3>
           <p>Group Information collaboration.</p>
           <div class="project-buttons">
-            <button>Netlify</button>
-            <button>Github</button>
+            <a href="https://github.com/muktarbdulkader"  target="_blank" rel="noopener noreferrer"><button>Github</button></a>
+            <a href="https://hucisabymuktar.netlify.app/" target="_blank" rel="noopener noreferrer"><button>Netlify</button></a>
           </div>
         </article>
 
@@ -80,8 +85,8 @@
           <h3>Coffee Shop</h3>
           <p>Coffee Shop Information.</p>
           <div class="project-buttons">
-            <button>Github</button>
-            <button>Netlify</button>
+            <a href="https://github.com/muktarbdulkader"  target="_blank" rel="noopener noreferrer"><button>Github</button></a>
+            <a href="https://onlinecofeedesignemuktar.netlify.app/" target="_blank" rel="noopener noreferrer"><button>Netlify</button></a>
           </div>
         </article>
       </div>
@@ -92,46 +97,61 @@
       <h2>Skills</h2>
       <div class="skills-content">
         <div class="skills-grid">
-          <div class="skill-card"><h4>Languages</h4><p>Javascript, Typescript, Python</p></div>
+          <div class="skill-card"><h4>Languages</h4><p>Javascript, Python, Telegram Bot</p></div>
+            
           <div class="skill-card"><h4>Database</h4><p>SQLite, PostgreSQL</p></div>
-          <div class="skill-card"><h4>Other</h4><p>HTML, CSS, SASS, SCSS, Less, Stylus, EJS, Jinja2, Pug</p></div>
-          <div class="skill-card"><h4>Frameworks</h4><p>React, Next, Gulp, Express, Flask, Quart</p></div>
+          <div class="skill-card"><h4>Other</h4><p>HTML, CSS, </p></div>
+          <div class="skill-card"><h4>Frameworks</h4><p>React </p></div>
         </div>
         <img src="https://storage.googleapis.com/a1aa/image/6971d41b-346c-4327-69a8-03e4975cbf85.jpg" alt="Illustration of coding tools and technologies" class="skills-image" loading="lazy" />
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>I'm Muktar Abdulkader, a Software Engineering student at Haramaya University, passionate about building responsive and functional web and mobile applications.</p>
-      <p>I focus on front-end development, animations, and user experience, constantly improving my skills through real-world projects and learning modern tools.</p>
-      <button>Learn More <span class="arrow">→</span></button>
-    </section>
+   <section id="about" class="section">
+  <h2>About Me</h2>
+  <p>I'm Muktar Abdulkader, a Software Engineering student at Haramaya University, passionate about building responsive and functional web and mobile applications.</p>
+  <p>I focus on front-end development, animations, and user experience, constantly improving my skills through real-world projects and learning modern tools.</p>
+  <button id="learn-more-btn">Learn More <span class="arrow">→</span></button>
+</section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section">
-      <h2>Testimonials</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <p>"Muktar is a talented developer with a keen eye for design. His work on our project was exceptional!"</p>
-          <p>- Client A</p>
-        </div>
-        <div class="testimonial-card">
-          <p>"Working with Muktar was a pleasure. He delivered high-quality work on time and exceeded our expectations."</p>
-          <p>- Client B</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
+<section id="more-info" style="display: none;">
+     <button class="btn-you" id="close-btn">&times;</button>
+  <h2>More About Me</h2>
+  <p><strong>Skills:</strong> HTML, CSS, JavaScript, React, Node.js</p>
+  <p><strong>Projects:</strong> Portfolio Website, Task Manager, AI Chatbot</p>
+  <p><strong>Education:</strong> Software Engineering Student at Haramaya University</p>
+  <p><strong>Experience:</strong> I'm actively working on real-world projects, improving my coding and design skills.</p>
+ 
+</section>
+ <section id="success" class="section">
+  <h2>Success Stats</h2>
+  <div class="success-grid">
+    <div class="success-card">
+      <span class="icon"><i class="fas fa-trophy"></i></span>
+      <span class="number" data-target="10">0</span>
+      <p>Projects Successfully Completed</p>
+    </div>
+    <div class="success-card">
+      <span class="icon"><i class="fas fa-users"></i></span>
+      <span class="number" data-target="95">0</span>
+      <p>will be happy clients(%)</p>
+    </div>
+    <div class="success-card">
+      <span class="icon"><i class="fas fa-code"></i></span>
+      <span class="number" data-target="1000">0</span>
+      <p>Lines of Code Written</p>
+    </div>
+  </div>
+</section>
+<!-- Contact Section -->
     <section id="contacts" class="section">
       <h2>Contact</h2>
       <div class="contact-content">
         <div class="contact-info">
           <p>I’m open to freelance opportunities and love collaborating on exciting projects. Drop me a message!</p>
           <p><span>✉️</span> muktarabdulkader957@gmail.com</p>
-          <p><span>🐙</span> <a href="https://github.com/muktarbdukader" rel="noopener noreferrer">github.com/muktarbdukader</a></p>
+          <p><span>🐙</span> <a href="https://github.com/muktarbdulkader" rel="noopener noreferrer" target="_blank">github.com/muktarbdukader</a></p>
         </div>
         <form id="contact-form" action="#" method="POST"   data-netlify="true"
             netlify-honeypot="bot-field">
@@ -160,11 +180,11 @@
         <span>Muktar</span>
       </div>
       <p>muktarabdulkader957@gmail.com</p>
-      <p>Web designer & front-end developer based in Warsaw, Poland</p>
+      <p>Web designer & front-end developer based  on your want</p>
       <div class="social-links">
-        <a href="#" rel="noopener noreferrer">FB</a>
-        <a href="#" rel="noopener noreferrer">PIN</a>
-        <a href="https://github.com/muktarbdukader" rel="noopener noreferrer">GH</a>
+        <a href="https://t.me/Mukti57" rel="fa fa-telegram">TG</a>
+        <a href="https://www.linkedin.com/in/muktar-abdulkader-3334b1340?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BMsczWiM7RA6vBVew3LsZGA%3D%3D" rel="fa fa-linkedin">LI</a>
+        <a href="https://github.com/muktarbdulkader" rel="fa fa-github">GH</a>
       </div>
     </div>
     <p class="copyright">© <span id="year"></span> Made with ❤️ by Muktar Abdulkader</p>
@@ -172,7 +192,9 @@
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </footer>
-
+    <div class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

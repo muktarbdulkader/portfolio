@@ -142,4 +142,78 @@ function type() {
   }
 }
 
-type();
+type();// Function to animate numbers
+// Function to animate numbers from 1 to the target number
+
+// Animate numbers in #success section
+function animateNumbers() {
+  const numbers = document.querySelectorAll('.number');
+
+  if (!numbers.length) {
+    console.error('No elements with class .number found');
+    return;
+  }
+
+  numbers.forEach((number) => {
+    const target = parseInt(number.getAttribute('data-target'), 10);
+    if (isNaN(target) || target <= 0) {
+      console.error(`Invalid or missing data-target for element:`, number);
+      return;
+    }
+
+    let count = 0;
+    const increment = Math.ceil(target / 100); 
+    const speed = 20; // Update every 20ms
+
+    const interval = setInterval(() => {
+      count += increment;
+      if (count >= target) {
+        count = target; 
+        clearInterval(interval);
+      }
+      number.textContent = count;
+    }, speed);
+  });
+}
+
+// Set up Intersection Observer for #success
+const successObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateNumbers();
+        observer.disconnect();
+      }
+    });
+  },
+  { threshold: 0.3 } 
+);
+
+// Observe #success section
+const successSection = document.getElementById('success');
+if (successSection) {
+  successObserver.observe(successSection);
+} else {
+  console.error('Success section not found');
+}
+// Show More Info when "Learn More" button is clicked
+document.getElementById("learn-more-btn").addEventListener("click", function() {
+  const moreInfoSection = document.getElementById("more-info");
+  moreInfoSection.style.display = "block"; // Show the hidden section
+});
+
+// Close the "More About Me" section when "Close" button is clicked
+document.getElementById("close-btn").addEventListener("click", function() {
+  const moreInfoSection = document.getElementById("more-info");
+  moreInfoSection.style.display = "none"; // Hide the section again
+});
+const scroll = document.querySelector('#scrollToTop');
+
+scroll.addEventListener('click', function() {
+  window.scrollTo({
+    top: document.body.scrollHeight, // Scroll to the bottom of the page
+    behavior: 'smooth' // Smooth scrolling
+  });
+  console.log('Scroll to bottom clicked');
+});
+
