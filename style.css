@@ -103,6 +103,9 @@ html {
   cursor: pointer;
   font-size: 1.5rem;
   color: #a9b1d6;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .color-toggle .fas.fa-moon {
@@ -436,6 +439,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -446,90 +450,133 @@ h2 {
 }
 
 .skills-grid {
- display: flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   justify-content: start;
-  align-items: justify;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 2rem;
 }
 
+.@keyframes waterFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.skill-card {
+  background-size: 600% 600%;
+  animation: waterFlow 6s ease infinite;
+  border-radius: 10px;
+  height: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(122, 162, 247, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Unique gradient backgrounds per card */
 .skill-card:nth-child(1) {
-  background: linear-gradient(to right, #1a1b26 0%, #166c41 50%, #2a2b3a 100%);
-  animation-delay: 0.2s;
- border-radius: 10px;
-  height: 100%;
-  padding: 1.5rem;
-  
-  animation: fadeInFlow 3s linear;
+  background: linear-gradient(270deg, #1a1b26, #1e3a5f, #29434e, #1a1b26);
 }
+
 .skill-card:nth-child(2) {
-   background: linear-gradient(to right, #1a261f 0%, #166c41 50%, #2a2b3a 100%);
-  animation-delay: 0.2s;
- border-radius: 10px;
-  height: 100%;
-  padding: 1.5rem;
-  
-  animation: fadeInFlow 3s linear;
+  background: linear-gradient(270deg, #1a261f, #2d6a4f, #1b3b2f, #1a261f);
 }
+
 .skill-card:nth-child(3) {
-   background: linear-gradient(to right, #0f1a97 0%, #166c41 50%, #2a2b3a 100%);
-  animation-delay: 0.2s;
- border-radius: 10px;
-  height: 100%;
-  padding: 1.5rem;
-  
-  animation: fadeInFlow 3s linear;
- 
+  background: linear-gradient(270deg, #0f1a97, #3f3d56, #2a2b3a, #0f1a97);
 }
+
 .skill-card:nth-child(4) {
-  background: linear-gradient(to right, #1a1b26 0%, #166c41 50%, #2a2b3a 100%);
-  animation-delay: 0.2s;
- border-radius: 10px;
-  height: 100%;
-  padding: 1.5rem;
-  
-  animation: fadeInFlow 3s linear;
-  
-
+  background: linear-gradient(270deg, #331a4d, #166c41, #2e294e, #331a4d);
 }
 
-@keyframes fadeInFlow {
-  from {
-   width: 0;
-    opacity: 0;
-    transform: translateY(20px);
-   
-  }
-  to {
-    width: 100%;
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Hover effect (optional but looks great) */
+.skill-card:hover {
+  box-shadow: 0 12px 30px rgba(122, 162, 247, 0.3);
+  transform: translateY(-5px);
 }
 
+/* Text styling */
 .skill-card h4 {
   font-size: 1rem;
   color: #7aa2f7;
   margin-bottom: 0.5rem;
- 
 }
 
 .skill-card p {
   font-size: 0.9rem;
   color: #a9b1d6;
 }
+.image-container {
+  position: relative;
+  width: 500px; /* adjust size as needed */
+  max-width: 100%;
+}
 
-.skills-image {
-  width: 256px;
+.background-image {
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+}
+
+.image-container {
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.background-image {
+  width: 100%;
   height: auto;
-  border-radius: 50%;
-  transition: transform 0.4s ease;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  
 }
 
-.skills-image:hover {
-  transform: scale(1.05);
+.overlay-image {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 150px;
+  border-radius: 50%;
+  border: 3px solid #7aa2f7;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  animation: imageFloat 4s ease-in-out infinite;
 }
+
+@keyframes imageFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive tweaks for smaller devices */
+@media (max-width: 480px) {
+  .image-container {
+    width: 100%;
+  }
+
+  .overlay-image {
+    width: 100px;
+    bottom: 5%;
+    right: 5%;
+  }
+}
+
 /* About section */
 #about {
   text-align: center;
@@ -560,44 +607,85 @@ h2 {
 }
 /* Styles for More Info Section */
 #more-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #2a2b3a;
-  color: white;
-  border-radius: 5px;
-  transition: opacity 0.5s ease-in-out;
+  max-width: 600px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(145deg, #1a1b25, #2a2f45);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(122, 162, 247, 0.15);
+  color: #e0e7ff;
+  position: relative;
+  animation: fadeIn 0.5s ease-in-out;
+  display: none;
 }
 
-/* Button styling */
-.btn-you {
-   
-  background: #7aa2f7;
-  color: #1a1b26;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 5px;
+#more-info h2 {
+  font-size: 1.5rem;
+  color: #7aa2f7;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#more-info p {
   font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #c0caf5;
+}
+
+#more-info strong {
+  color: #f7768e;
+}
+
+/* Close Button */
+#more-info .btn-you {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #f7768e;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  
- 
+  transition: transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #5b8cee;
+#more-info .btn-you:hover {
+  transform: scale(1.2);
 }
 
-/* Arrow Styling */
-.arrow {
-  margin-left: 0.5rem;
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* 🌐 Mobile responsive */
+@media (max-width: 500px) {
+  #more-info {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
 
+  #more-info h2 {
+    font-size: 1.3rem;
+  }
+
+  #more-info p {
+    font-size: 0.95rem;
+  }
+
+  #more-info .btn-you {
+    font-size: 1.3rem;
+  }
+}
 
 
 /* Success Stats Section */
@@ -675,15 +763,14 @@ button:hover {
 
 .contact-info {
   max-width: 400px;
- 
-  justify-content: start;
+  
 }
 
 .contact-info p {
   font-size: 1rem;
-  color: #a9b1d6;
-  margin-bottom: 1.5rem;
-  text-align: left;
+  color: #c0caf5;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .contact-info .contact-details span {
@@ -691,87 +778,193 @@ button:hover {
   color: #f7768e;
   text-align: left;
   font-weight: bold;
-
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .contact-details p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #e0e7ff;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
 }
 
 .contact-details a {
   color: #7aa2f7;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1rem;
-
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 .contact-details a:hover {
   text-decoration: underline;
+  color: #bb9af7;
+}
+
+/* 🌐 Mobile responsiveness */
+@media (max-width: 500px) {
+  .contact-info {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .contact-details p {
+    font-size: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  .contact-info p,
+  .contact-info .contact-details span {
+    font-size: 0.95rem;
+  }
+
+  .contact-details a {
+    font-size: 0.95rem;
+  }
 }
 
 form {
+  position: relative;
   max-width: 400px;
-  background: #24283b;
+  background: linear-gradient(145deg, #1e2030, #2a2f45);
   padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(122, 162, 247, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
 }
 
+form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(122, 162, 247, 0.3);
+}
+
+/* Responsive form container with flowing animated border */
+form {
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+  background: linear-gradient(145deg, #1a1b25, #2a2f45);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(122, 162, 247, 0.1);
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 2rem auto;
+}
+
+form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px rgba(122, 162, 247, 0.3);
+}
+
+/* Flowing animated border */
+form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(270deg, #7aa2f7, #bb9af7, #9ece6a, #f7768e, #7aa2f7);
+  background-size: 400% 400%;
+  border-radius: 15px;
+  animation: flowingBorder 8s linear infinite;
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
+
+@keyframes flowingBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Form fields */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-group label {
-
   display: block;
-  font-size: 0.9rem;
-  color: #e0e7ff;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #c0caf5;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.8rem 1rem;
   background: #1a1b26;
   color: #e0e7ff;
-  border: 1px solid #a9b1d6;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border: 1px solid #3b4261;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #7aa2f7;
-  box-shadow: 0 0 8px rgba(122, 162, 247, 0.6);
+  box-shadow: 0 0 10px rgba(122, 162, 247, 0.5);
+  background: #1f2333;
   outline: none;
 }
 
+/* Submit button */
 form button {
   width: 100%;
-  background: #7aa2f7;
-  color: #1a1b26;
-  padding: 0.75rem;
+  background: linear-gradient(to right, #7aa2f7, #bb9af7);
+  color: #0f111a;
+  padding: 0.85rem 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.4s ease, transform 0.2s ease;
 }
 
 form button:hover {
-  background: #5b8cee;
-  animation: pulse 0.4s ease-in-out;
+  background: linear-gradient(to right, #5b8cee, #9a7fe7);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(122, 162, 247, 0.3);
+}
+
+form button:active {
+  transform: scale(0.98);
 }
 
 form button span {
   margin-left: 0.5rem;
+}
+
+/* 🌐 Mobile Responsiveness */
+@media (max-width:768px) {
+  form {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  form button {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
 }
 
 /* Footer */
