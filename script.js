@@ -142,8 +142,7 @@ function type() {
   }
 }
 
-type();// Function to animate numbers
-// Function to animate numbers from 1 to the target number
+type();
 
 // Animate numbers in #success section
 function animateNumbers() {
@@ -163,7 +162,7 @@ function animateNumbers() {
 
     let count = 0;
     const increment = Math.ceil(target / 100); 
-    const speed = 20; // Update every 20ms
+    const speed = 20;
 
     const interval = setInterval(() => {
       count += increment;
@@ -188,15 +187,15 @@ const successObserver = new IntersectionObserver(
   },
   { threshold: 0.3 } 
 );
-
-// Observe #success section
 const successSection = document.getElementById('success');
 if (successSection) {
   successObserver.observe(successSection);
 } else {
   console.error('Success section not found');
 }
-// Show More Info when "Learn More" button is clicked
+
+
+
 document.getElementById("learn-more-btn").addEventListener("click", function() {
   const moreInfoSection = document.getElementById("more-info");
   moreInfoSection.style.display = "block"; // Show the hidden section
@@ -205,15 +204,23 @@ document.getElementById("learn-more-btn").addEventListener("click", function() {
 // Close the "More About Me" section when "Close" button is clicked
 document.getElementById("close-btn").addEventListener("click", function() {
   const moreInfoSection = document.getElementById("more-info");
-  moreInfoSection.style.display = "none"; // Hide the section again
+  moreInfoSection.style.display = "none"; 
 });
 const scroll = document.querySelector('#scrollToTop');
-
+// Smooth scroll to top
 scroll.addEventListener('click', function() {
   window.scrollTo({
-    top: document.body.scrollHeight, // Scroll to the bottom of the page
-    behavior: 'smooth' // Smooth scrolling
+    top: 0, 
+    behavior: 'smooth' 
   });
-  console.log('Scroll to bottom clicked');
+  console.log('Scroll to top clicked');
+});
+// Show the button when scrolling down
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 300) { 
+    scroll.style.display = 'block';
+  } else {
+    scroll.style.display = 'none';
+  }
 });
 
