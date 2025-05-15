@@ -223,4 +223,27 @@ window.addEventListener('scroll', function() {
     scroll.style.display = 'none';
   }
 });
+ 
+window.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.header');
+  const menuItem2 = document.querySelector('.section');
+
+  const stikNav = function(entries, observer) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) {
+      nav.classList.add('sticky');
+    } else {
+      nav.classList.remove('sticky');
+    }
+  };
+
+  const header = new IntersectionObserver(stikNav, {
+    root: null,
+    threshold: 0,
+    rootMargin: "-50px",
+  });
+
+  header.observe(menuItem2);
+});
+
 
