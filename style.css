@@ -989,13 +989,11 @@ footer p {
     
   }
   .typing span {
-    font-size: 2rem;
+    font-size: 1rem;
     color: #7aa2f7;
   }
   
-  .typing span {
-    font-size: 1rem;
-  }
+ 
   .contact-content {
     padding: 2rem 1rem;
     width: fit-content;

@@ -2,14 +2,14 @@
 document.addEventListener('keydown', (e) => {
   if (e.key === 'd' && e.ctrlKey) {
     document.body.classList.toggle('debug');
-    console.log('Debug outlines toggled:', document.body.classList.contains('debug') ? 'Enabled' : 'Disabled');
+    // console.log('Debug outlines toggled:', document.body.classList.contains('debug') ? 'Enabled' : 'Disabled');
   }
 });
 
 // Toggle borders for debugging
 function toggleBorders() {
   document.body.classList.toggle('show-borders');
-  console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
+  // console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
 }
 
 // Scroll to contact section
@@ -17,9 +17,9 @@ function scrollToContact() {
   const contactSection = document.getElementById('contacts');
   if (contactSection) {
     contactSection.scrollIntoView({ behavior: 'smooth' });
-    console.log('Scrolled to contact section');
+    // console.log('Scrolled to contact section');
   } else {
-    console.error('Contact section not found');
+    // console.error('Contact section not found');
   }
 }
 
@@ -41,11 +41,11 @@ function handleFormSubmit(event) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     alert('Please enter a valid email address.');
-    console.warn('Form submission failed: Invalid email');
+    // console.warn('Form submission failed: Invalid email');
     return;
   }
 
-  console.log('Form submitted:', { name, email, message });
+  // console.log('Form submitted:', { name, email, message });
   alert('Message sent! Thank you for your comment and contact.');
   form.reset();
 }
@@ -55,7 +55,7 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', handleFormSubmit);
 } else {
-  console.error('Contact form not found');
+  // console.error('Contact form not found');
   const contactSection = document.querySelector('#contacts');
   if (contactSection) {
     contactSection.innerHTML = '<p>Error: Contact form unavailable. Please try again later.</p>';
@@ -70,7 +70,7 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
-        console.log(`Section animated: ${entry.target.id || entry.target.className}`);
+        // console.log(`Section animated: ${entry.target.id || entry.target.className}`);
         obs.unobserve(entry.target);
       }
     });
@@ -84,12 +84,12 @@ sections.forEach((section) => observer.observe(section));
 const contactMeBtn = document.getElementById('contact-me-btn');
 if (contactMeBtn) {
   contactMeBtn.addEventListener('click', () => {
-    console.log('Contact Me button clicked');
+    // console.log('Contact Me button clicked');
     toggleBorders();
     scrollToContact();
   });
 } else {
-  console.error('Contact Me button not found');
+  // console.error('Contact Me button not found');
 }
 
 // Toggle dark/light mode
@@ -97,10 +97,10 @@ const colorToggle = document.querySelector('.color-toggle');
 if (colorToggle) {
   colorToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    console.log('Theme toggled:', document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode');
+    // console.log('Theme toggled:', document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode');
   });
 } else {
-  console.error('Color toggle button not found');
+  // console.error('Color toggle button not found');
 }
 
 // Smooth scroll for navigation links
@@ -124,7 +124,7 @@ navLinks.forEach((link) => {
       navMenu.removeAttribute('style');
       console.log(`Navigated to: ${e.target.getAttribute('href')}`);
     } else {
-      console.error(`Navigation target ${e.target.getAttribute('href')} not found`);
+      // console.error(`Navigation target ${e.target.getAttribute('href')} not found`);
     }
   });
 });
@@ -132,7 +132,7 @@ navLinks.forEach((link) => {
 
 const socialLinks = [
   { href: 'https://x.com/Muktarabdu5138', class: 'fab fa-twitter', title: 'Twitter' },
-  { href: '#', class: 'fab fa-instagram', title: 'Instagram' },
+  { href: 'https://t.me/Mukti57', class: 'fab fa-telegram', title: 'telegram' },
   { href: 'https://www.linkedin.com/in/muktar-abdulkader-3334b1340/', class: 'fab fa-linkedin', title: 'LinkedIn' },
 ];
 
@@ -154,16 +154,16 @@ function addSocialLinks() {
       a.target = '_blank';
       a.title = link.title;
       a.setAttribute('aria-label', `Visit my ${link.title}`);
-      a.style.color = 'white';
+      a.style.color = '#CCC';
       a.style.fontSize = '1.8rem';
-      a.style.transition = 'color 0.3s';
+      a.style.transition = 'color 3s';
       a.addEventListener('mouseenter', () => (a.style.color = '#00ffcc'));
       a.addEventListener('mouseleave', () => (a.style.color = 'white'));
       socialContainer.appendChild(a);
     });
 
     navMenu.appendChild(socialContainer);
-    console.log('Social links added');
+    // console.log('Social links added');
   }
 }
 
@@ -174,12 +174,12 @@ function handleToggle() {
     menuToggle.style.display = 'none';
     navMenu.style.display = 'flex';
     if (socialContainer) socialContainer.style.display = 'none'; 
-    console.log('Desktop menu activated, social links hidden');
+    // console.log('Desktop menu activated, social links hidden');
   } else {
     menuToggle.style.display = 'block';
     if (!socialContainer) addSocialLinks(); 
     if (socialContainer) socialContainer.style.display = 'flex'; 
-    console.log('Mobile menu activated, social links visible');
+    // console.log('Mobile menu activated, social links visible');
   }
 }
 
@@ -269,21 +269,21 @@ function type() {
 if (textElement) {
   type();
 } else {
-  console.error('Typing animation element not found');
+  // console.error('Typing animation element not found');
 }
 
 // Animate numbers in #success section
 function animateNumbers() {
   const numbers = document.querySelectorAll('.number');
   if (!numbers.length) {
-    console.error('No elements with class .number found');
+    // console.error('No elements with class .number found');
     return;
   }
 
   numbers.forEach((number) => {
     const target = parseInt(number.getAttribute('data-target'), 10);
     if (isNaN(target) || target <= 0) {
-      console.error(`Invalid or missing data-target for element:`, number);
+      // console.error(`Invalid or missing data-target for element:`, number);
       return;
     }
 
@@ -298,7 +298,7 @@ function animateNumbers() {
         clearInterval(interval);
       }
       number.textContent = count;
-      console.log(`Animating number: ${count}/${target}`);
+      // console.log(`Animating number: ${count}/${target}`);
     }, speed);
   });
 }
@@ -310,7 +310,7 @@ const successObserver = new IntersectionObserver(
       if (entry.isIntersecting) {
         animateNumbers();
         observer.disconnect();
-        console.log('Success section animated');
+        // console.log('Success section animated');
       }
     });
   },
@@ -321,7 +321,7 @@ const successSection = document.getElementById('success');
 if (successSection) {
   successObserver.observe(successSection);
 } else {
-  console.error('Success section not found');
+  // console.error('Success section not found');
 }
 
 // Learn More and Close buttons
@@ -332,19 +332,19 @@ const moreInfoSection = document.getElementById('more-info');
 if (learnMoreBtn && moreInfoSection) {
   learnMoreBtn.addEventListener('click', () => {
     moreInfoSection.style.display = 'block';
-    console.log('More info section shown');
+    // console.log('More info section shown');
   });
 } else {
-  console.error('Learn More button or More Info section not found');
+  // console.error('Learn More button or More Info section not found');
 }
 
 if (closeBtn && moreInfoSection) {
   closeBtn.addEventListener('click', () => {
     moreInfoSection.style.display = 'none';
-    console.log('More info section hidden');
+    // console.log('More info section hidden');
   });
 } else {
-  console.error('Close button or More Info section not found');
+  // console.error('Close button or More Info section not found');
 }
 
 // Scroll to top
@@ -355,14 +355,14 @@ if (scrollToTop) {
       top: 0,
       behavior: 'smooth',
     });
-    console.log('Scrolled to top');
+    // console.log('Scrolled to top');
   });
 
   window.addEventListener('scroll', () => {
     scrollToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
   });
 } else {
-  console.error('Scroll to top button not found');
+  // console.error('Scroll to top button not found');
 }
 
 // Sticky navigation
@@ -374,10 +374,10 @@ if (nav && menuItem2) {
     const [entry] = entries;
     if (!entry.isIntersecting) {
       nav.classList.add('sticky');
-      console.log('Navigation set to sticky');
+      // console.log('Navigation set to sticky');
     } else {
       nav.classList.remove('sticky');
-      console.log('Navigation set to static');
+      // console.log('Navigation set to static');
     }
   };
 
@@ -389,5 +389,5 @@ if (nav && menuItem2) {
 
   headerObserver.observe(menuItem2);
 } else {
-  console.error('Header or hero/section not found for sticky navigation');
+  // console.error('Header or hero/section not found for sticky navigation');
 }
