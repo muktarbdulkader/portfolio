@@ -1,15 +1,15 @@
-// Debug outlines toggle
+// Debug outlines toggle (Ctrl+D)
 document.addEventListener('keydown', (e) => {
   if (e.key === 'd' && e.ctrlKey) {
     document.body.classList.toggle('debug');
-    console.log('Debug outlines toggled');
+    console.log('Debug outlines toggled:', document.body.classList.contains('debug') ? 'Enabled' : 'Disabled');
   }
 });
 
-// Toggle borders
+// Toggle borders for debugging
 function toggleBorders() {
-  document.body.classList.toggle('no-borders');
-  console.log('Borders toggled:', document.body.classList.contains('no-borders') ? 'Off' : 'On');
+  document.body.classList.toggle('show-borders');
+  console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
 }
 
 // Scroll to contact section
@@ -17,27 +17,36 @@ function scrollToContact() {
   const contactSection = document.getElementById('contacts');
   if (contactSection) {
     contactSection.scrollIntoView({ behavior: 'smooth' });
+    console.log('Scrolled to contact section');
   } else {
     console.error('Contact section not found');
   }
 }
 
-// Handle form submission
+// Handle form submission with validation
 function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const message = formData.get('message');
+  const name = formData.get('name').trim();
+  const email = formData.get('email').trim();
+  const message = formData.get('message').trim();
 
   if (!name || !email || !message) {
     alert('Please fill out all fields.');
+    console.warn('Form submission failed: Missing fields');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    console.warn('Form submission failed: Invalid email');
     return;
   }
 
   console.log('Form submitted:', { name, email, message });
-  alert('Message sent! (Demo mode, no email sent.)');
+  alert('Message sent! Thank you for your comment and contact.');
   form.reset();
 }
 
@@ -47,16 +56,22 @@ if (contactForm) {
   contactForm.addEventListener('submit', handleFormSubmit);
 } else {
   console.error('Contact form not found');
+  const contactSection = document.querySelector('#contacts');
+  if (contactSection) {
+    contactSection.innerHTML = '<p>Error: Contact form unavailable. Please try again later.</p>';
+  }
 }
 
-// Scroll animations
+// Scroll animations for sections
 const sections = document.querySelectorAll('.section');
 const observer = new IntersectionObserver(
-  (entries) => {
+  (entries, obs) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+        console.log(`Section animated: ${entry.target.id || entry.target.className}`);
+        obs.unobserve(entry.target);
       }
     });
   },
@@ -82,13 +97,17 @@ const colorToggle = document.querySelector('.color-toggle');
 if (colorToggle) {
   colorToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
+    console.log('Theme toggled:', document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode');
   });
 } else {
   console.error('Color toggle button not found');
 }
 
-// Add smooth scroll to navigation links
+// Smooth scroll for navigation links
 const navLinks = document.querySelectorAll('nav a');
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('nav');
+
 navLinks.forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -98,30 +117,134 @@ navLinks.forEach((link) => {
         behavior: 'smooth',
         block: 'start',
       });
-      // Collapse mobile menu
-      
+      navMenu.classList.remove('active');
+      menuToggle.textContent = '☰';
       menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open menu');
+      navMenu.removeAttribute('style');
+      console.log(`Navigated to: ${e.target.getAttribute('href')}`);
     } else {
       console.error(`Navigation target ${e.target.getAttribute('href')} not found`);
     }
   });
 });
 
-// Add mobile menu toggle functionality
-const menuToggle = document.querySelector('.menu-toggle');
-menuToggle.addEventListener('click', () => {
-  const navMenu = document.querySelector('#nav');
-  navMenu.classList.toggle('active');
- 
+
+const socialLinks = [
+  { href: 'https://x.com/Muktarabdu5138', class: 'fab fa-twitter', title: 'Twitter' },
+  { href: '#', class: 'fab fa-instagram', title: 'Instagram' },
+  { href: 'https://www.linkedin.com/in/muktar-abdulkader-3334b1340/', class: 'fab fa-linkedin', title: 'LinkedIn' },
+];
+
+// Add social links (only for mobile)
+function addSocialLinks() {
+  let socialContainer = navMenu.querySelector('.social-link2');
+  if (!socialContainer) {
+    socialContainer = document.createElement('div');
+    socialContainer.classList.add('social-link2');
+    socialContainer.style.marginTop = '1.5rem';
+    socialContainer.style.display = 'flex';
+    socialContainer.style.justifyContent = 'center';
+    socialContainer.style.gap = '1.2rem';
+
+    socialLinks.forEach((link) => {
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.className = link.class;
+      a.target = '_blank';
+      a.title = link.title;
+      a.setAttribute('aria-label', `Visit my ${link.title}`);
+      a.style.color = 'white';
+      a.style.fontSize = '1.8rem';
+      a.style.transition = 'color 0.3s';
+      a.addEventListener('mouseenter', () => (a.style.color = '#00ffcc'));
+      a.addEventListener('mouseleave', () => (a.style.color = 'white'));
+      socialContainer.appendChild(a);
+    });
+
+    navMenu.appendChild(socialContainer);
+    console.log('Social links added');
+  }
+}
+
+// Handle responsive menu and social links visibility
+function handleToggle() {
+  const socialContainer = navMenu.querySelector('.social-link2');
+  if (window.innerWidth > 768) {
+    menuToggle.style.display = 'none';
+    navMenu.style.display = 'flex';
+    if (socialContainer) socialContainer.style.display = 'none'; 
+    console.log('Desktop menu activated, social links hidden');
+  } else {
+    menuToggle.style.display = 'block';
+    if (!socialContainer) addSocialLinks(); 
+    if (socialContainer) socialContainer.style.display = 'flex'; 
+    console.log('Mobile menu activated, social links visible');
+  }
+}
+
+// Initialize menu
+handleToggle();
+
+// Debounced resize handler
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(handleToggle, 100);
 });
 
+// Mobile menu toggle
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const isActive = navMenu.classList.contains('active');
+    menuToggle.textContent = isActive ? '✖' : '☰';
+    menuToggle.setAttribute('aria-expanded', isActive);
+    menuToggle.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
 
-// Set dynamic year in footer
+    if (isActive) {
+      navMenu.style.position = 'fixed';
+      navMenu.style.top = '60px';
+      navMenu.style.left = '0';
+      navMenu.style.width = '100%';
+      navMenu.style.height = 'calc(100vh - 60px)';
+      navMenu.style.backgroundColor = '#1a1b26';
+      navMenu.style.flexDirection = 'column';
+      navMenu.style.justifyContent = 'center';
+      navMenu.style.alignItems = 'center';
+      navMenu.style.gap = '1.5rem';
+      navMenu.style.zIndex = '9999';
+      navMenu.style.overflowY = 'auto';
+      const socialContainer = navMenu.querySelector('.social-link2');
+      if (socialContainer) socialContainer.style.display = 'flex';
+    } else {
+      navMenu.removeAttribute('style');
+    }
+    console.log(`Mobile menu ${isActive ? 'opened' : 'closed'}`);
+  });
+} else {
+  console.error('Menu toggle not found');
+}
+
+// Close mobile menu on scroll
+window.addEventListener('scroll', () => {
+  if (navMenu.classList.contains('active')) {
+    navMenu.classList.remove('active');
+    menuToggle.textContent = '☰';
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
+    navMenu.removeAttribute('style');
+    console.log('Mobile menu closed due to scroll');
+  }
+});
+
+// Update footer year
 document.getElementById('year').textContent = new Date().getFullYear();
-const textElement = document.querySelector('.typing span');
-const fullText = "Hello, I am Muktar! , web developer";
-const splitIndex = fullText.indexOf("web developer");
 
+// Typing animation
+const textElement = document.querySelector('.typing span');
+const fullText = 'Hello, I am Muktar! , web developer';
+const splitIndex = fullText.indexOf('web developer');
 let i = 0;
 
 function type() {
@@ -137,17 +260,21 @@ function type() {
   } else {
     setTimeout(() => {
       i = 0;
+      textElement.innerHTML = '<span class="cursor">|</span>';
       type();
-    }, 1500);
+    }, 3000);
   }
 }
 
-type();
+if (textElement) {
+  type();
+} else {
+  console.error('Typing animation element not found');
+}
 
 // Animate numbers in #success section
 function animateNumbers() {
   const numbers = document.querySelectorAll('.number');
-
   if (!numbers.length) {
     console.error('No elements with class .number found');
     return;
@@ -161,32 +288,35 @@ function animateNumbers() {
     }
 
     let count = 0;
-    const increment = Math.ceil(target / 100); 
+    const increment = Math.ceil(target / 100);
     const speed = 20;
 
     const interval = setInterval(() => {
       count += increment;
       if (count >= target) {
-        count = target; 
+        count = target;
         clearInterval(interval);
       }
       number.textContent = count;
+      console.log(`Animating number: ${count}/${target}`);
     }, speed);
   });
 }
 
-// Set up Intersection Observer for #success
+// Intersection Observer for #success
 const successObserver = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         animateNumbers();
         observer.disconnect();
+        console.log('Success section animated');
       }
     });
   },
-  { threshold: 0.3 } 
+  { threshold: 0.3 }
 );
+
 const successSection = document.getElementById('success');
 if (successSection) {
   successObserver.observe(successSection);
@@ -194,56 +324,70 @@ if (successSection) {
   console.error('Success section not found');
 }
 
+// Learn More and Close buttons
+const learnMoreBtn = document.getElementById('learn-more-btn');
+const closeBtn = document.getElementById('close-btn');
+const moreInfoSection = document.getElementById('more-info');
 
-
-document.getElementById("learn-more-btn").addEventListener("click", function() {
-  const moreInfoSection = document.getElementById("more-info");
-  moreInfoSection.style.display = "block"; // Show the hidden section
-});
-
-// Close the "More About Me" section when "Close" button is clicked
-document.getElementById("close-btn").addEventListener("click", function() {
-  const moreInfoSection = document.getElementById("more-info");
-  moreInfoSection.style.display = "none"; 
-});
-const scroll = document.querySelector('#scrollToTop');
-// Smooth scroll to top
-scroll.addEventListener('click', function() {
-  window.scrollTo({
-    top: 0, 
-    behavior: 'smooth' 
+if (learnMoreBtn && moreInfoSection) {
+  learnMoreBtn.addEventListener('click', () => {
+    moreInfoSection.style.display = 'block';
+    console.log('More info section shown');
   });
-  console.log('Scroll to top clicked');
-});
-// Show the button when scrolling down
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 300) { 
-    scroll.style.display = 'block';
-  } else {
-    scroll.style.display = 'none';
-  }
-});
- 
-window.addEventListener('DOMContentLoaded', () => {
-  const nav = document.querySelector('.header');
-  const menuItem2 = document.querySelector('.section');
+} else {
+  console.error('Learn More button or More Info section not found');
+}
 
-  const stikNav = function(entries, observer) {
+if (closeBtn && moreInfoSection) {
+  closeBtn.addEventListener('click', () => {
+    moreInfoSection.style.display = 'none';
+    console.log('More info section hidden');
+  });
+} else {
+  console.error('Close button or More Info section not found');
+}
+
+// Scroll to top
+const scrollToTop = document.querySelector('#scrollToTop');
+if (scrollToTop) {
+  scrollToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    console.log('Scrolled to top');
+  });
+
+  window.addEventListener('scroll', () => {
+    scrollToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+} else {
+  console.error('Scroll to top button not found');
+}
+
+// Sticky navigation
+const nav = document.querySelector('.header');
+const menuItem2 = document.querySelector('#hero') || document.querySelector('.section');
+
+if (nav && menuItem2) {
+  const stickyNav = function (entries) {
     const [entry] = entries;
     if (!entry.isIntersecting) {
       nav.classList.add('sticky');
+      console.log('Navigation set to sticky');
     } else {
       nav.classList.remove('sticky');
+      console.log('Navigation set to static');
     }
   };
 
-  const header = new IntersectionObserver(stikNav, {
+  const headerObserver = new IntersectionObserver(stickyNav, {
     root: null,
     threshold: 0,
-    rootMargin: "-50px",
+    rootMargin: '-50px',
   });
 
-  header.observe(menuItem2);
-});
-
-
+  headerObserver.observe(menuItem2);
+} else {
+  console.error('Header or hero/section not found for sticky navigation');
+}
