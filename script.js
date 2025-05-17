@@ -103,7 +103,6 @@ if (colorToggle) {
   // console.error('Color toggle button not found');
 }
 
-// Smooth scroll for navigation links
 const navLinks = document.querySelectorAll('nav a');
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('nav');
@@ -117,33 +116,31 @@ navLinks.forEach((link) => {
         behavior: 'smooth',
         block: 'start',
       });
-      navMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open menu');
-      navMenu.removeAttribute('style');
-      console.log(`Navigated to: ${e.target.getAttribute('href')}`);
-    } else {
-      // console.error(`Navigation target ${e.target.getAttribute('href')} not found`);
+      if (window.innerWidth <= 768) {
+        navMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+        navMenu.style.display = 'none';
+        navMenu.removeAttribute('style');
+      }
     }
   });
 });
 
-
 const socialLinks = [
   { href: 'https://x.com/Muktarabdu5138', class: 'fab fa-twitter', title: 'Twitter' },
-  { href: 'https://t.me/Mukti57', class: 'fab fa-telegram', title: 'telegram' },
+  { href: 'https://t.me/Mukti57', class: 'fab fa-telegram', title: 'Telegram' },
   { href: 'https://www.linkedin.com/in/muktar-abdulkader-3334b1340/', class: 'fab fa-linkedin', title: 'LinkedIn' },
 ];
 
-// Add social links (only for mobile)
 function addSocialLinks() {
   let socialContainer = navMenu.querySelector('.social-link2');
   if (!socialContainer) {
     socialContainer = document.createElement('div');
     socialContainer.classList.add('social-link2');
     socialContainer.style.marginTop = '1.5rem';
-    socialContainer.style.display = 'flex';
+    socialContainer.style.display = 'none';
     socialContainer.style.justifyContent = 'center';
     socialContainer.style.gap = '1.2rem';
 
@@ -156,121 +153,128 @@ function addSocialLinks() {
       a.setAttribute('aria-label', `Visit my ${link.title}`);
       a.style.color = '#CCC';
       a.style.fontSize = '1.8rem';
-      a.style.transition = 'color 3s';
+      a.style.transition = 'color 0.3s';
       a.addEventListener('mouseenter', () => (a.style.color = '#00ffcc'));
       a.addEventListener('mouseleave', () => (a.style.color = 'white'));
       socialContainer.appendChild(a);
     });
 
     navMenu.appendChild(socialContainer);
-    // console.log('Social links added');
   }
 }
 
-// Handle responsive menu and social links visibility
 function handleToggle() {
   const socialContainer = navMenu.querySelector('.social-link2');
   if (window.innerWidth > 768) {
     menuToggle.style.display = 'none';
     navMenu.style.display = 'flex';
-    if (socialContainer) socialContainer.style.display = 'none'; 
-    // console.log('Desktop menu activated, social links hidden');
+    navMenu.classList.remove('active');
+    navMenu.removeAttribute('style');
+    if (socialContainer) socialContainer.style.display = 'none';
+    menuToggle.textContent = '☰';
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
   } else {
     menuToggle.style.display = 'block';
-    if (!socialContainer) addSocialLinks(); 
-    if (socialContainer) socialContainer.style.display = 'flex'; 
-    // console.log('Mobile menu activated, social links visible');
+    if (!socialContainer) addSocialLinks();
+    if (socialContainer) socialContainer.style.display = 'none';
+    navMenu.style.display = navMenu.classList.contains('active') ? 'flex' : 'none';
   }
 }
 
-// Initialize menu
 handleToggle();
 
-// Debounced resize handler
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(handleToggle, 100);
 });
 
-// Mobile menu toggle
 if (menuToggle) {
   menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    const isActive = navMenu.classList.contains('active');
+    const isActive = navMenu.classList.toggle('active');
     menuToggle.textContent = isActive ? '✖' : '☰';
     menuToggle.setAttribute('aria-expanded', isActive);
     menuToggle.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
 
     if (isActive) {
+      navMenu.style.display = 'flex';
       navMenu.style.position = 'fixed';
       navMenu.style.top = '60px';
       navMenu.style.left = '0';
       navMenu.style.width = '100%';
       navMenu.style.height = 'calc(100vh - 60px)';
-      navMenu.style.backgroundColor = '#1a1b26';
+      navMenu.style.backgroundColor = 'rgba(26, 27, 38, 0.9)';
       navMenu.style.flexDirection = 'column';
       navMenu.style.justifyContent = 'center';
       navMenu.style.alignItems = 'center';
       navMenu.style.gap = '1.5rem';
       navMenu.style.zIndex = '9999';
       navMenu.style.overflowY = 'auto';
+
       const socialContainer = navMenu.querySelector('.social-link2');
       if (socialContainer) socialContainer.style.display = 'flex';
     } else {
+      navMenu.style.display = 'none';
       navMenu.removeAttribute('style');
     }
-    console.log(`Mobile menu ${isActive ? 'opened' : 'closed'}`);
   });
-} else {
-  console.error('Menu toggle not found');
 }
 
-// Close mobile menu on scroll
 window.addEventListener('scroll', () => {
-  if (navMenu.classList.contains('active')) {
+  if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
     navMenu.classList.remove('active');
     menuToggle.textContent = '☰';
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Open menu');
+    navMenu.style.display = 'none';
     navMenu.removeAttribute('style');
-    console.log('Mobile menu closed due to scroll');
   }
 });
 
 // Update footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Typing animation
-const textElement = document.querySelector('.typing span');
-const fullText = 'Hello, I am Muktar! , web developer';
-const splitIndex = fullText.indexOf('web developer');
-let i = 0;
+ // Typing animation
+  const typingElement = document.querySelector('.typing span');
+  const texts = [
+    "Hello, I'm Muktar!",
+    "I'm a Web Developer",
+    "I love coding"
+  ];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  
+  function type() {
+    const currentText = texts[textIndex];
+    
+    if (isDeleting) {
 
-function type() {
-  if (i <= fullText.length) {
-    const before = fullText.substring(0, i);
-    const colored = `
-      <span style="color: #7aa2f7;">${before.substring(0, splitIndex)}</span>
-      <span style="color: #f7768e;">${before.substring(splitIndex)}</span>
-    `;
-    textElement.innerHTML = colored + '<span class="cursor">|</span>';
-    i++;
-    setTimeout(type, 100);
-  } else {
-    setTimeout(() => {
-      i = 0;
-      textElement.innerHTML = '<span class="cursor">|</span>';
-      type();
-    }, 3000);
+      typingElement.textContent = currentText.substring(0, charIndex - 1);
+      
+      charIndex--;
+    } else {
+      typingElement.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+    }
+    
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      setTimeout(type, 1500);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(type, 500);
+    } else {
+      setTimeout(type, isDeleting ? 50 : 100);
+    }
   }
-}
+  
+  if (typingElement) {
+    setTimeout(type, 1000);
+  }
 
-if (textElement) {
-  type();
-} else {
-  // console.error('Typing animation element not found');
-}
 
 // Animate numbers in #success section
 function animateNumbers() {

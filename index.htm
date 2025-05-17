@@ -15,14 +15,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   
      <header class="header">
    
     <div class="logo">
+      
       <img src="muktar.png" alt="Logo letter M" width="32" height="32" />
-      <span>Muktar</span>
+      <span data-aos="fade-left"     data-aos-duration="1000">Muktar</span>
     </div>
     <nav class="nav" id="nav">
       <a href="#home" class="active" aria-current="page">Home</a>
@@ -52,19 +54,21 @@
         
         <span></span></div>
         <p class="subtitle">A <span class="highlight">Web Designer</span> & <span class="highlight">Front-End Developer</span></p>
-        <p class="description">I craft stunning, responsive websites with creativity and code.</p>
+        <p class="description"  data-aos="fade-down-left" data-aos-duration="1500">I craft stunning, responsive websites with creativity and code.</p>
         <button id="contact-me-btn">Contact Me <span class="arrow">→</span></button>
       </div>
-      <div class="hero-image">
-        <img src="images/muktar.png" alt="Person in hoodie" width="320" height="320" />
-        <div class="image-glow"></div>
-      </div>
+     <div class="hero-image">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
+  <spline-viewer url="https://prod.spline.design/uxbRFwGnVvjbpixJ/scene.splinecode"></spline-viewer>
+  <div class="image-glow"></div>
+</div>
+
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section">
       <h2>Projects</h2>
-      <div class="project-grid">
+      <div data-aos="flip-up" data-aos-duration="1500" class="project-grid">
         <!-- Project Cards -->
         <article class="project-card">
           <img src="images/image.png" alt="ThecnGear project preview" width="280" height="140" loading="lazy" />
@@ -104,8 +108,8 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="skills-content">
+      <h2 >Skills</h2>
+      <div  data-aos="zoom-in-left"  data-aos-duration="1500" class="skills-content">
         <div class="skills-grid">
           <div class="skill-card"><h4>Languages</h4><p>Javascript, Python, Telegram Bot</p></div>
             
@@ -130,7 +134,7 @@
       </div>
     </section>
 
-   <section id="about" class="section">
+   <section data-aos="zoom-out-right" data data-aos-duration="1500" id="about" class="section">
   <h2>About Me</h2>
   <p>I'm Muktar Abdulkader, a Software Engineering student at Haramaya University, passionate about building responsive and functional web and mobile applications.</p>
   <p>I focus on front-end development, animations, and user experience, constantly improving my skills through real-world projects and learning modern tools.</p>
@@ -237,5 +241,9 @@
   </div>
   </div>
   <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>

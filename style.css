@@ -92,12 +92,12 @@ html {
 .wrapper {
   position: relative;
   width: 100%;
-  min-height: 90vh;
+  min-height: 80vh;
   border-radius: 16px;
   padding: 2rem;
   margin: 0 auto;
   background: linear-gradient(135deg, #1a1b26, #2a2b3a);
-  box-shadow: 0 0 20px rgba(91, 140, 238, 0.6);
+
   overflow: hidden;
   z-index: 1;
   animation: fadeIn 0.5s ease-in-out;
@@ -233,14 +233,14 @@ nav a:hover, nav a.active {
 
 /* Main sections */
 main {
-  padding-top: 80px;
-  max-width: 1200px;
+  /* padding-top: 30px; */
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
 
 .section {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,48 +262,87 @@ h2 {
   color: #e0e7ff;
 }
 
-/* Hero section */
+/* Hero section container */
 #home {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   background: linear-gradient(135deg, #1a1b26 0%, #2a2b3a 100%);
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
 }
 
+/* Content inside the hero section */
 .hero-content {
   max-width: 600px;
+    height: auto;
+  width: 100%;
+ 
+  padding-bottom: 2px;
+  text-align: center; /* Centered on small screens */
 }
 
+/* Typing effect styling */
 .typing {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid #7aa2f7;
+  border-right: 2px solid #7aa2f7;
   width: fit-content;
   animation: blink 0.75s step-end infinite;
-  margin-bottom: 1rem;
+  margin: 0 auto;
+  color: #7aa2f7;
+  min-height: 50px;
+  line-height: 1.4;
+  
 }
 
+.subtitle,
+.description {
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #7aa2f7; }
+}
+
+/* Subtitle text */
 .subtitle {
   font-size: 1.5rem;
+    
+
+
   color: #7aa2f7;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem ;
+
 }
 
+/* Highlighted keywords */
 .highlight {
+   
+  width: 100%;
   color: #f7768e;
   font-weight: 600;
 }
 
+/* Small description */
 .description {
+    height: auto;
+  width: 100%;
   font-size: 1rem;
   color: #a9b1d6;
   margin-bottom: 2rem;
 }
 
+/* Button styling */
 .hero-content button {
   background: #7aa2f7;
   color: #1a1b26;
@@ -315,45 +354,70 @@ h2 {
   transition: background 0.3s ease;
 }
 
+/* Button hover effect */
 .hero-content button:hover {
   background: #5b8cee;
   animation: pulse 0.4s ease-in-out;
 }
 
+/* Arrow beside button */
 .arrow {
   margin-left: 0.5rem;
 }
 
+/* Spline 3D model container */
 .hero-image {
   position: relative;
-  max-width: 320px;
-}
-
-.hero-image img {
+  max-width: 280px;
   width: 100%;
-  height: auto;
-  border-radius: 50%;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  background: #24283b;
+  margin: 0 auto;
+  opacity: 0.85; /* Make the image less visible */
 }
 
-.hero-image img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+/* Spline viewer styling */
+.hero-image spline-viewer {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1e1e2e;
+  filter: brightness(0.9) contrast(1.1); /* Subtle appearance */
+  transition: transform 0.4s ease, filter 0.4s ease;
+  display: block;
 }
 
-.image-glow {
+/* Hover effect for spline model */
+.hero-image spline-viewer:hover {
+  transform: scale(1.03);
+  filter: brightness(2) contrast(1.2);
+}
+
+/* Glowing animation around the spline */
+/* .image-glow {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #7aa2f7;
-  opacity: 0.2;
+  background: radial-gradient(circle, #7aa2f7 0%, transparent 70%);
+  opacity: 0.15;
   border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
+  pointer-events: none;
+  animation: subtle-pulse 3s ease-in-out infinite;
+} */
+
+/* Subtle glow pulse */
+@keyframes subtle-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.05); opacity: 0.25; }
 }
 
+/* Pulse effect for hover (used on button) */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 /* Projects section */
 .project-grid {
   display: grid;
@@ -364,9 +428,10 @@ h2 {
 .project-card {
   background: #24283b;
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 .project-card:hover {
@@ -993,7 +1058,7 @@ footer p {
     color: #7aa2f7;
   }
   
- 
+
   .contact-content {
     padding: 2rem 1rem;
     width: fit-content;
@@ -1008,7 +1073,6 @@ footer p {
     border-radius: 12px;
     background: #24283b;
   }
-
 
   h2 {
     font-size: 2rem;
