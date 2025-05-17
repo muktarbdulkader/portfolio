@@ -181,18 +181,12 @@ html {
   display: inline;
 }
 
-
-
 body.dark-mode .color-toggle .fas.fa-moon {
   display: none;
 }
 
 body.dark-mode .color-toggle .fas.fa-sun {
   display: inline;
-}
-
-.color-toggle .fallback {
-  display: none;
 }
 
 .color-toggle:not(:has(.fas.fa-moon, .fas.fa-sun)) .fallback {

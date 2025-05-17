@@ -7,10 +7,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Toggle borders for debugging
-function toggleBorders() {
-  document.body.classList.toggle('show-borders');
-  // console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
-}
+// function toggleBorders() {
+//   document.body.classList.toggle('show-borders');
+//   // console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
+// }
 
 // Scroll to contact section
 function scrollToContact() {
