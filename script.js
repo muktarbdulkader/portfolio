@@ -85,7 +85,7 @@ const contactMeBtn = document.getElementById('contact-me-btn');
 if (contactMeBtn) {
   contactMeBtn.addEventListener('click', () => {
     // console.log('Contact Me button clicked');
-    toggleBorders();
+    // toggleBorders();
     scrollToContact();
   });
 } else {
@@ -368,6 +368,13 @@ if (scrollToTop) {
 } else {
   // console.error('Scroll to top button not found');
 }
+const  scrlto= document.querySelector('#contact-me-btn')
+const footer=document.querySelector('footer')
+scrlto.addEventListener('click' ,function(){
+  footer.scrollIntoView({behavior:'smooth'})
+
+})
+
 
 // Sticky navigation
 const nav = document.querySelector('.header');
