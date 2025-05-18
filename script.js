@@ -71,16 +71,16 @@ const observer = new IntersectionObserver(
 sections.forEach((section) => observer.observe(section));
 
 // Contact Me button handler
-const contactMeBtn = document.getElementById('contact-me-btn');
-if (contactMeBtn) {
-  contactMeBtn.addEventListener('click', () => {
-    // console.log('Contact Me button clicked');
-    // toggleBorders();
-    scrollToContact();
-  });
-} else {
-  // console.error('Contact Me button not found');
-}
+// const contactMeBtn = document.getElementById('contact-me-btn');
+// if (contactMeBtn) {
+//   contactMeBtn.addEventListener('click', () => {
+//     // console.log('Contact Me button clicked');
+//     // toggleBorders();
+//     scrollToContact();
+//   });
+// } else {
+//   // console.error('Contact Me button not found');
+// }
 
 // Toggle dark/light mode
 // const colorToggle = document.querySelector('.color-toggle');
