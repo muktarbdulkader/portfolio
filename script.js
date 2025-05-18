@@ -12,55 +12,45 @@ document.addEventListener('keydown', (e) => {
 //   // console.log('Borders toggled:', document.body.classList.contains('show-borders') ? 'Enabled' : 'Disabled');
 // }
 
-// Scroll to contact section
-function scrollToContact() {
-  const contactSection = document.getElementById('contacts');
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-    // console.log('Scrolled to contact section');
-  } else {
-    // console.error('Contact section not found');
-  }
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  const cont = document.getElementById('cont');
 
-// Handle form submission with validation
-function handleFormSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  const name = formData.get('name').trim();
-  const email = formData.get('email').trim();
-  const message = formData.get('message').trim();
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-  if (!name || !email || !message) {
-    alert('Please fill out all fields.');
-    console.warn('Form submission failed: Missing fields');
-    return;
-  }
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert('Please enter a valid email address.');
-    // console.warn('Form submission failed: Invalid email');
-    return;
-  }
+    if (!name || !email || !message) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
 
-  // console.log('Form submitted:', { name, email, message });
-  alert('Message sent! Thank you for your comment and contact.');
-  form.reset();
-}
+    form.style.display = 'none';
 
-// Attach form handler
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-  contactForm.addEventListener('submit', handleFormSubmit);
-} else {
-  // console.error('Contact form not found');
-  const contactSection = document.querySelector('#contacts');
-  if (contactSection) {
-    contactSection.innerHTML = '<p>Error: Contact form unavailable. Please try again later.</p>';
-  }
-}
+    cont.innerHTML = `<p style="
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #c3e6cb;
+      font-weight: bold;
+      text-align: center;
+    ">Thank you for contacting me, <strong>${name}</strong>! I will get back to you soon.</p>`;
+
+    form.reset();
+
+    // After 5 seconds, hide the message and show the form again
+    setTimeout(() => {
+      cont.innerHTML = '';  // Clear message
+      form.style.display = 'block';  // Show form again
+    }, 5000); // 5000 milliseconds = 5 seconds
+  });
+});
+
+
 
 // Scroll animations for sections
 const sections = document.querySelectorAll('.section');

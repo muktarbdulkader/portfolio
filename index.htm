@@ -133,6 +133,9 @@
 
       </div>
     </section>
+    
+
+    
 
    <section id="about" class="section">
   <h2 data-aos="zoom-in-left"  data-aos-duration="1500">About Me</h2>
@@ -182,22 +185,29 @@
           <p><span>✉️</span> muktarabdulkader957@gmail.com</p>
           <p><span>🐙</span> <a href="https://github.com/muktarbdulkader" rel="noopener noreferrer" target="_blank">github.com/muktarbdukader</a></p>
         </div>
-        <form id="contact-form" action="#" method="POST"   data-netlify="true"
-            netlify-honeypot="bot-field">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit">Send Message <span>📬</span></button>
-        </form>
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact" />
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <button type="submit">Send Message <span>📬</span></button>
+    
+</form>
+<div id="cont"></div>
+
       </div>
     </section>
   </main>
