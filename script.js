@@ -42,11 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.reset();
 
-    // After 5 seconds, hide the message and show the form again
+   
     setTimeout(() => {
-      cont.innerHTML = '';  // Clear message
-      form.style.display = 'block';  // Show form again
-    }, 5000); // 5000 milliseconds = 5 seconds
+      cont.innerHTML = '';  
+      form.style.display = 'block';  
+    }, 5000); 
   });
 });
 
@@ -83,45 +83,36 @@ if (contactMeBtn) {
 }
 
 // Toggle dark/light mode
-const colorToggle = document.querySelector('.color-toggle');
-if (colorToggle) {
-  colorToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    // console.log('Theme toggled:', document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode');
-  });
-} else {
-  // console.error('Color toggle button not found');
-}
+// const colorToggle = document.querySelector('.color-toggle');
+// if (colorToggle) {
+//   colorToggle.addEventListener('click', () => {
+//     document.body.classList.toggle('dark-mode');
+//     // console.log('Theme toggled:', document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode');
+//   });
+// } else {
+//   // console.error('Color toggle button not found');
+// }
 
-const navLinks = document.querySelectorAll('nav a');
-const menuToggle = document.getElementById('menuToggle');
+
 const navMenu = document.getElementById('nav');
-
-navLinks.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-      if (window.innerWidth <= 768) {
-        navMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Open menu');
-        navMenu.style.display = 'none';
-        navMenu.removeAttribute('style');
-      }
-    }
-  });
-});
+const menuToggle = document.getElementById('menuToggle');
 
 const socialLinks = [
-  { href: 'https://x.com/Muktarabdu5138', class: 'fab fa-twitter', title: 'Twitter' },
-  { href: 'https://t.me/Mukti57', class: 'fab fa-telegram', title: 'Telegram' },
-  { href: 'https://www.linkedin.com/in/muktar-abdulkader-3334b1340/', class: 'fab fa-linkedin', title: 'LinkedIn' },
+  {
+    href: 'https://github.com/',
+    class: 'fab fa-github',
+    title: 'GitHub'
+  },
+  {
+    href: 'https://linkedin.com/',
+    class: 'fab fa-linkedin',
+    title: 'LinkedIn'
+  },
+  {
+    href: 'https://twitter.com/',
+    class: 'fab fa-twitter',
+    title: 'Twitter'
+  }
 ];
 
 function addSocialLinks() {
@@ -129,10 +120,6 @@ function addSocialLinks() {
   if (!socialContainer) {
     socialContainer = document.createElement('div');
     socialContainer.classList.add('social-link2');
-    socialContainer.style.marginTop = '1.5rem';
-    socialContainer.style.display = 'none';
-    socialContainer.style.justifyContent = 'center';
-    socialContainer.style.gap = '1.2rem';
 
     socialLinks.forEach((link) => {
       const a = document.createElement('a');
@@ -141,11 +128,6 @@ function addSocialLinks() {
       a.target = '_blank';
       a.title = link.title;
       a.setAttribute('aria-label', `Visit my ${link.title}`);
-      a.style.color = '#CCC';
-      a.style.fontSize = '1.8rem';
-      a.style.transition = 'color 0.3s';
-      a.addEventListener('mouseenter', () => (a.style.color = '#00ffcc'));
-      a.addEventListener('mouseleave', () => (a.style.color = 'white'));
       socialContainer.appendChild(a);
     });
 
@@ -156,71 +138,52 @@ function addSocialLinks() {
 function handleToggle() {
   const socialContainer = navMenu.querySelector('.social-link2');
   if (window.innerWidth > 768) {
-    menuToggle.style.display = 'none';
+    navMenu.classList.remove('nav-mobile');
+    navMenu.classList.add('nav-desktop');
     navMenu.style.display = 'flex';
-    navMenu.classList.remove('active');
-    navMenu.removeAttribute('style');
+    menuToggle.style.display = 'none';
     if (socialContainer) socialContainer.style.display = 'none';
-    menuToggle.textContent = '☰';
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Open menu');
   } else {
+    navMenu.classList.remove('nav-desktop');
+    navMenu.style.display = 'none';
     menuToggle.style.display = 'block';
     if (!socialContainer) addSocialLinks();
     if (socialContainer) socialContainer.style.display = 'none';
-    navMenu.style.display = navMenu.classList.contains('active') ? 'flex' : 'none';
   }
 }
 
-handleToggle();
-
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(handleToggle, 100);
-});
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    const isActive = navMenu.classList.toggle('active');
-    menuToggle.textContent = isActive ? '✖' : '☰';
-    menuToggle.setAttribute('aria-expanded', isActive);
-    menuToggle.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
-
-    if (isActive) {
-      navMenu.style.display = 'flex';
-      navMenu.style.position = 'fixed';
-      navMenu.style.top = '60px';
-      navMenu.style.left = '0';
-      navMenu.style.width = '100%';
-      navMenu.style.height = 'calc(100vh - 60px)';
-      navMenu.style.backgroundColor = 'rgba(26, 27, 38, 0.9)';
-      navMenu.style.flexDirection = 'column';
-      navMenu.style.justifyContent = 'center';
-      navMenu.style.alignItems = 'center';
-      navMenu.style.gap = '1.5rem';
-      navMenu.style.zIndex = '9999';
-      navMenu.style.overflowY = 'auto';
-
-      const socialContainer = navMenu.querySelector('.social-link2');
-      if (socialContainer) socialContainer.style.display = 'flex';
-    } else {
-      navMenu.style.display = 'none';
-      navMenu.removeAttribute('style');
-    }
-  });
-}
-
-window.addEventListener('scroll', () => {
-  if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
-    navMenu.classList.remove('active');
+menuToggle.addEventListener('click', () => {
+  const isActive = navMenu.classList.toggle('nav-mobile');
+  if (isActive) {
+    navMenu.style.display = 'flex';
+    const socialContainer = navMenu.querySelector('.social-link2');
+    if (socialContainer) socialContainer.style.display = 'flex';
+    menuToggle.textContent = '✖';
+    menuToggle.setAttribute('aria-expanded', 'true');
+  } else {
+    navMenu.style.display = 'none';
+    navMenu.classList.remove('nav-mobile');
     menuToggle.textContent = '☰';
     menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Open menu');
-    navMenu.style.display = 'none';
-    navMenu.removeAttribute('style');
   }
 });
+
+window.addEventListener('resize', () => {
+  clearTimeout(window.resizeTimeout);
+  window.resizeTimeout = setTimeout(handleToggle, 100);
+});
+
+window.addEventListener('scroll', () => {
+  if (window.innerWidth <= 768 && navMenu.classList.contains('nav-mobile')) {
+    navMenu.classList.remove('nav-mobile');
+    navMenu.style.display = 'none';
+    menuToggle.textContent = '☰';
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Initial call
+handleToggle();
 
 // Update footer year
 document.getElementById('year').textContent = new Date().getFullYear();
