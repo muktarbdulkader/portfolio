@@ -7,6 +7,7 @@
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #1a1b26 0%, #2a2b3a 100%);
+  background-color: #1a1b26; 
   background-attachment: fixed;
   color: #e0e7ff;
   line-height: 1.6;
@@ -16,6 +17,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
   height: 100%;
 }
+
 
 body {
   position: relative;
@@ -87,13 +89,15 @@ html {
   overflow: hidden;
   z-index: 1;
   animation: fadeIn 0.5s ease-in-out;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -webkit-transform-style: preserve-3d;
+
+  /* Modern, standard properties */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
   transform: translateZ(0);
   will-change: transform;
   contain: content;
 }
+
 
 .wrapper::before {
   content: "";
@@ -777,9 +781,12 @@ form button span {
 
 /* Footer */
 footer {
-  background: #24283b;
-  padding: 2rem;
-  text-align: center;
+  background-color: #1a1b26;
+  padding: 2rem 1rem 1rem; /* reduced bottom padding */
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: auto;
 }
 
 .footer-content {
@@ -787,7 +794,8 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .footer-logo {
@@ -802,12 +810,17 @@ footer {
 footer p {
   font-size: 0.9rem;
   color: #a9b1d6;
+  margin: 0;
+  padding: 0;
 }
 
 .social-links {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
+
 
 .social-links a {
   color: wheat;
